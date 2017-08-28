@@ -19,9 +19,19 @@
 package node
 
 import (
-
+	"context"
 )
 
-func Daemon (cfg *Config) {
+var ctx Context
 
+type Context struct {
+
+}
+
+func GetContext() *Context {
+	return &ctx
+}
+
+func (c *Context) Background() context.Context {
+	return context.Background()
 }
