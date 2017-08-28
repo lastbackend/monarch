@@ -22,14 +22,14 @@ import (
 	"fmt"
 	"github.com/jawher/mow.cli"
 	"github.com/lastbackend/monarch/pkg/node"
-	"github.com/lastbackend/monarch/pkg/node/config"
+	log "github.com/sirupsen/logrus"
 	"os"
 )
 
 func main() {
 
 	var (
-		cfg config.Config
+		cfg node.Config
 	)
 
 	app := cli.App("", "Infrastructure management toolkit")
@@ -38,9 +38,14 @@ func main() {
 
 	app.Spec = "[OPTIONS]"
 
-	cfg.LogLevel = app.Int(cli.IntOpt{
-		Name:   "debug", Desc: "Debug level mode",
-		EnvVar: "DEBUG", Value: 0, HideValue: true,
+	var level = app.String(cli.StringOpt{
+		Name:   "logging", Desc: "Logging level mode",
+		EnvVar: "DEBUG", Value: "info", HideValue: true,
+	})
+
+	cfg.Port = app.Int(cli.IntOpt{
+		Name:   "port", Desc: "Port to listen to",
+		EnvVar: "PORT", Value: 33555, HideValue: false,
 	})
 
 	var help = app.Bool(cli.BoolOpt{
@@ -56,11 +61,19 @@ func main() {
 		}
 	}
 
+	log.SetOutput(os.Stdout)
+
+	lvl, err := log.ParseLevel(*level)
+	if err != nil {
+		log.Fatal("Can't parse log level")
+	}
+	log.SetLevel(lvl)
+
 	app.Action = func() {
 		node.Daemon(&cfg)
 	}
 
-	err := app.Run(os.Args)
+	err = app.Run(os.Args)
 	if err != nil {
 		fmt.Errorf("Error: run application: %s", err.Error())
 		return

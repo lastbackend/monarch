@@ -20,7 +20,7 @@ package node
 
 // The structure of the cfg to run the daemon
 type Config struct {
-	LogLevel        *int
+	Port     *int
 }
 
 var cfg = new(Config)
