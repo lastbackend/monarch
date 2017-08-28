@@ -19,9 +19,29 @@
 package node
 
 import (
-
+	"net/http"
+	"github.com/go-playground/pure"
+	log "github.com/sirupsen/logrus"
+	//"fmt"
+	"fmt"
 )
 
-func Daemon (cfg *Config) {
+func Daemon(cfg *Config) {
+	p := pure.New()
+	p.Post("/build", build)
+	p.Post("/deploy", deploy)
 
+	log.WithFields(log.Fields{
+		"port": *cfg.Port,
+	}).Info("listening")
+
+	http.ListenAndServe(fmt.Sprintf(":%d", *cfg.Port), p.Serve())
+}
+
+func build(w http.ResponseWriter, r *http.Request) {
+	w.Write([]byte("Hello World"))
+}
+
+func deploy(w http.ResponseWriter, r *http.Request) {
+	w.Write([]byte("Hello World"))
 }

@@ -15,3 +15,5 @@
 
 # Idea files
 .idea/
+
+vendor/*/
