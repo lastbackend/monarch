@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-docker build -t lastbackend/node -f ./images/node/Dockerfile .
+docker build -t lastbackend/monarch -f ./images/node/Dockerfile .
