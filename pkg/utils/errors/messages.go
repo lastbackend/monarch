@@ -16,48 +16,13 @@
 // from Last.Backend LLC.
 //
 
-package core
+package errors
 
-import (
-"github.com/lastbackend/monarch/pkg/log"
-"os"
-"os/signal"
-"syscall"
+import "errors"
+
+var (
+	NotLoggedMessage   = errors.New("You are currently not logged in to the system, to get proper access create a new user or login with an existing user.")
+	LoginErrorMessage  = errors.New("Incorrect login or password")
+	LogoutErrorMessage = errors.New("Some problems with logout")
+	UnknownMessage     = errors.New("Oops, error occurred: Please provide bug to github: https://github.com/lastbackend/monarch/issues")
 )
-
-const logLevel = 2
-const app = "core"
-
-func Daemon(_cfg *Config) {
-
-	var (
-		sigs = make(chan os.Signal)
-		done = make(chan bool, 1)
-	)
-
-	log.New(app, *_cfg.LogLevel)
-	log.Info("Start Core server")
-
-	go func() {
-		if err := Listen(*_cfg.APIServer.Host, *_cfg.APIServer.Port); err != nil {
-			log.Fatalf("Http server start error: %v", err)
-		}
-	}()
-
-	// Handle SIGINT and SIGTERM.
-	signal.Notify(sigs, syscall.SIGINT, syscall.SIGTERM)
-
-	go func() {
-		for {
-			select {
-			case <-sigs:
-				done <- true
-				return
-			}
-		}
-	}()
-
-	<-done
-
-	log.Info("Handle SIGINT and SIGTERM.")
-}

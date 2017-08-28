@@ -18,10 +18,9 @@
 
 package main
 
-
 import (
 	"fmt"
-	"github.com/lastbackend/monarch/pkg/core"
+	"github.com/lastbackend/monarch/pkg/auth"
 	"github.com/jawher/mow.cli"
 	"os"
 )
@@ -29,10 +28,10 @@ import (
 func main() {
 
 	var (
-		cfg core.Config
+		cfg auth.Config
 	)
 
-	app := cli.App("", "Core API server")
+	app := cli.App("", "Auth api server")
 
 	app.Version("v version", "0.1.0")
 
@@ -54,7 +53,7 @@ func main() {
 	})
 	cfg.APIServer.Port = app.Int(cli.IntOpt{
 		Name:   "http-server-port", Desc: "Http server port",
-		EnvVar: "HTTP_SERVER_PORT", Value: 2968, HideValue: true,
+		EnvVar: "HTTP_SERVER_PORT", Value: 2967, HideValue: true,
 	})
 
 	var help = app.Bool(cli.BoolOpt{
@@ -71,7 +70,7 @@ func main() {
 	}
 
 	app.Action = func() {
-		core.Daemon(&cfg)
+		auth.Daemon(&cfg)
 	}
 
 	err := app.Run(os.Args)

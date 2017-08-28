@@ -1,0 +1,120 @@
+/* ============================================================================= */
+/* ============================= Reset css section ============================= */
+/* ============================================================================= */
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td {
+  margin: 0;
+  padding: 0;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+fieldset, img {
+  border: 0;
+}
+
+address, caption, cite, code, dfn, em, th, var {
+  font-style: normal;
+  font-weight: normal;
+}
+
+caption, th {
+  text-align: left;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin-bottom: 10px;
+  font-weight: normal;
+}
+
+h1 {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+h2 {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+h4 {
+  font-size: 16px;
+}
+
+h6 {
+  font-size: 14px;
+}
+
+a:active, a:focus, img, input:active, input:focus {
+  outline: none;
+  border-color: transparent;
+}
+
+/* ============================================================================= */
+/* ============================ Main template styles =========================== */
+/* ============================================================================= */
+
+.wrap {
+  margin-left: 200px
+}
+
+@media (max-width: 992px) {
+  .wrap {
+    margin-left: 0;
+  }
+}
+
+.content {
+  padding: 25px;
+  -webkit-transition: margin-top 0.35s ease, opacity 0.2s;
+  -o-transition: margin-top 0.35s ease, opacity 0.2s;
+  transition: margin-top 0.35s ease, opacity 0.2s;
+  max-width: none;
+  width: auto;
+  opacity: 1
+}
+
+.content.hiding {
+  opacity: 0
+}
+
+a, button {
+  cursor: pointer;
+}
+
+.vertical-center {
+  min-height: calc(100% - 50px); /* Fallback for browsers do NOT support vh unit */
+  min-height: calc(100vh - 50px); /* These two lines are counted as one :-)*/
+  display: flex;
+  align-items: center;
+}
+
+.page-404 {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.page-404 .page-404-header {
+  color: #2d353c;
+  font-size: 96px;
+  line-height: 100px;
+}
+
+.page-404 .page-404-desc {
+  font-size: 12px;
+  color: #647788;
+}
+
+.page-404 button {
+  margin-top: 30px;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}

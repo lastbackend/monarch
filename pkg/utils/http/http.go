@@ -16,48 +16,32 @@
 // from Last.Backend LLC.
 //
 
-package core
+package http
 
 import (
-"github.com/lastbackend/monarch/pkg/log"
-"os"
-"os/signal"
-"syscall"
+	"fmt"
+	"net/http"
+	//	"time"
 )
 
-const logLevel = 2
-const app = "core"
-
-func Daemon(_cfg *Config) {
-
-	var (
-		sigs = make(chan os.Signal)
-		done = make(chan bool, 1)
-	)
-
-	log.New(app, *_cfg.LogLevel)
-	log.Info("Start Core server")
-
-	go func() {
-		if err := Listen(*_cfg.APIServer.Host, *_cfg.APIServer.Port); err != nil {
-			log.Fatalf("Http server start error: %v", err)
+func Handle(h http.HandlerFunc, middleware ...Middleware) http.HandlerFunc {
+	headers := func(h http.HandlerFunc) http.HandlerFunc {
+		return func(w http.ResponseWriter, r *http.Request) {
+			//start := time.Now()
+			Headers(w, r)
+			h.ServeHTTP(w, r)
+			//fmt.Println(fmt.Sprintf("%s\t%s\t%s", r.Method, r.RequestURI, time.Since(start)))
 		}
-	}()
+	}
 
-	// Handle SIGINT and SIGTERM.
-	signal.Notify(sigs, syscall.SIGINT, syscall.SIGTERM)
+	h = headers(h)
+	for _, m := range middleware {
+		h = m(h)
+	}
 
-	go func() {
-		for {
-			select {
-			case <-sigs:
-				done <- true
-				return
-			}
-		}
-	}()
+	return h
+}
 
-	<-done
-
-	log.Info("Handle SIGINT and SIGTERM.")
+func Listen(host string, port int, router http.Handler) error {
+	return http.ListenAndServe(fmt.Sprintf("%s:%d", host, port), router)
 }

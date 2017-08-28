@@ -16,48 +16,16 @@
 // from Last.Backend LLC.
 //
 
-package core
+package http
 
-import (
-"github.com/lastbackend/monarch/pkg/log"
-"os"
-"os/signal"
-"syscall"
-)
+import "net/http"
 
-const logLevel = 2
-const app = "core"
+func Headers(w http.ResponseWriter, r *http.Request) {
+	origin := r.Header.Get("Origin")
 
-func Daemon(_cfg *Config) {
-
-	var (
-		sigs = make(chan os.Signal)
-		done = make(chan bool, 1)
-	)
-
-	log.New(app, *_cfg.LogLevel)
-	log.Info("Start Core server")
-
-	go func() {
-		if err := Listen(*_cfg.APIServer.Host, *_cfg.APIServer.Port); err != nil {
-			log.Fatalf("Http server start error: %v", err)
-		}
-	}()
-
-	// Handle SIGINT and SIGTERM.
-	signal.Notify(sigs, syscall.SIGINT, syscall.SIGTERM)
-
-	go func() {
-		for {
-			select {
-			case <-sigs:
-				done <- true
-				return
-			}
-		}
-	}()
-
-	<-done
-
-	log.Info("Handle SIGINT and SIGTERM.")
+	w.Header().Add("Access-Control-Allow-Origin", origin)
+	w.Header().Add("Access-Control-Allow-Credentials", "true")
+	w.Header().Add("Access-Control-Allow-Methods", "OPTIONS,GET,POST,PUT,DELETE")
+	w.Header().Add("Access-Control-Allow-Headers", "X-CSRF-Token, Authorization, Content-Type, x-lastbackend, Origin, X-Requested-With, Content-Name, Accept")
+	w.Header().Add("Content-Type", "application/json")
 }

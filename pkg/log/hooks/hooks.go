@@ -16,48 +16,41 @@
 // from Last.Backend LLC.
 //
 
-package core
+package hooks
 
 import (
-"github.com/lastbackend/monarch/pkg/log"
-"os"
-"os/signal"
-"syscall"
+	"github.com/sirupsen/logrus"
+	"path"
+	"runtime"
+	"strings"
 )
 
-const logLevel = 2
-const app = "core"
+type ContextHook struct {
+	Skip int
+}
 
-func Daemon(_cfg *Config) {
+func (ContextHook) Levels() []logrus.Level {
+	return logrus.AllLevels
+}
 
-	var (
-		sigs = make(chan os.Signal)
-		done = make(chan bool, 1)
-	)
+func (h ContextHook) Fire(entry *logrus.Entry) error {
+	if h.Skip == 0 {
+		h.Skip = 8
+	}
 
-	log.New(app, *_cfg.LogLevel)
-	log.Info("Start Core server")
+	pc := make([]uintptr, 3, 3)
+	cnt := runtime.Callers(h.Skip, pc)
 
-	go func() {
-		if err := Listen(*_cfg.APIServer.Host, *_cfg.APIServer.Port); err != nil {
-			log.Fatalf("Http server start error: %v", err)
+	for i := 0; i < cnt; i++ {
+		fu := runtime.FuncForPC(pc[i] - 1)
+		name := fu.Name()
+		if !strings.Contains(name, "github.com/sirupsen/logrus") {
+			file, line := fu.FileLine(pc[i] - 1)
+			entry.Data["func"] = path.Base(name)
+			entry.Data["file"] = file
+			entry.Data["line"] = line
+			break
 		}
-	}()
-
-	// Handle SIGINT and SIGTERM.
-	signal.Notify(sigs, syscall.SIGINT, syscall.SIGTERM)
-
-	go func() {
-		for {
-			select {
-			case <-sigs:
-				done <- true
-				return
-			}
-		}
-	}()
-
-	<-done
-
-	log.Info("Handle SIGINT and SIGTERM.")
+	}
+	return nil
 }

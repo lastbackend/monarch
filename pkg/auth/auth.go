@@ -16,17 +16,17 @@
 // from Last.Backend LLC.
 //
 
-package core
+package auth
 
 import (
-"github.com/lastbackend/monarch/pkg/log"
-"os"
-"os/signal"
-"syscall"
+	"github.com/lastbackend/monarch/pkg/log"
+	"os"
+	"os/signal"
+	"syscall"
 )
 
 const logLevel = 2
-const app = "core"
+const app = "auth"
 
 func Daemon(_cfg *Config) {
 
@@ -36,9 +36,10 @@ func Daemon(_cfg *Config) {
 	)
 
 	log.New(app, *_cfg.LogLevel)
-	log.Info("Start Core server")
+	log.Info("Start Auth server")
 
 	go func() {
+		//types.SecretAccessToken = *_cfg.Token
 		if err := Listen(*_cfg.APIServer.Host, *_cfg.APIServer.Port); err != nil {
 			log.Fatalf("Http server start error: %v", err)
 		}
