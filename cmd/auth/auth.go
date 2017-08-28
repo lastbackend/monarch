@@ -20,35 +20,40 @@ package main
 
 import (
 	"fmt"
+	"github.com/lastbackend/monarch/pkg/auth"
 	"github.com/jawher/mow.cli"
-	"github.com/lastbackend/monarch/pkg/node"
-	log "github.com/sirupsen/logrus"
 	"os"
-	"context"
-	"syscall"
-	"os/signal"
 )
 
 func main() {
 
 	var (
-		cfg node.Config
+		cfg auth.Config
 	)
 
-	app := cli.App("", "Infrastructure management toolkit")
+	app := cli.App("", "Auth api server")
 
-	app.Version("v version", "0.9.0")
+	app.Version("v version", "0.1.0")
 
 	app.Spec = "[OPTIONS]"
 
-	var level = app.String(cli.StringOpt{
-		Name:   "logging", Desc: "Logging level mode",
-		EnvVar: "DEBUG", Value: "info", HideValue: true,
+	cfg.LogLevel = app.Int(cli.IntOpt{
+		Name:   "debug", Desc: "Debug level mode",
+		EnvVar: "DEBUG", Value: 0, HideValue: true,
 	})
 
-	cfg.Port = app.Int(cli.IntOpt{
-		Name:   "port", Desc: "Port to listen to",
-		EnvVar: "PORT", Value: 33555, HideValue: false,
+	cfg.Token = app.String(cli.StringOpt{
+		Name:   "token", Desc: "Secret token for signature",
+		EnvVar: "SECRET_TOKEN", Value: "b8tX!ae4", HideValue: true,
+	})
+
+	cfg.APIServer.Host = app.String(cli.StringOpt{
+		Name:   "http-server-host", Desc: "Http server host",
+		EnvVar: "HTTP_SERVER_HOST", Value: "", HideValue: true,
+	})
+	cfg.APIServer.Port = app.Int(cli.IntOpt{
+		Name:   "http-server-port", Desc: "Http server port",
+		EnvVar: "HTTP_SERVER_PORT", Value: 2967, HideValue: true,
 	})
 
 	var help = app.Bool(cli.BoolOpt{
@@ -64,32 +69,11 @@ func main() {
 		}
 	}
 
-	log.SetOutput(os.Stdout)
-
-	lvl, err := log.ParseLevel(*level)
-	if err != nil {
-		log.Fatal("Can't parse log level")
-	}
-	log.SetLevel(lvl)
-
-
-	ctx, cancel := context.WithCancel(context.Background())
-	defer cancel()
-
-
-	sigs := make(chan os.Signal)
-	signal.Notify(sigs, syscall.SIGINT, syscall.SIGTERM)
-
-	go func() {
-		<-sigs
-		cancel()
-	}()
-
 	app.Action = func() {
-		node.Daemon(ctx, &cfg)
+		auth.Daemon(&cfg)
 	}
 
-	err = app.Run(os.Args)
+	err := app.Run(os.Args)
 	if err != nil {
 		fmt.Errorf("Error: run application: %s", err.Error())
 		return

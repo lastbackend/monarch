@@ -1,0 +1,172 @@
+{
+	"comment": "",
+	"ignore": "test",
+	"package": [
+		{
+			"checksumSHA1": "ZKxETlJdB2XubMrZnXB0FQimVA8=",
+			"origin": "github.com/lastbackend/enterprise/vendor/github.com/Sirupsen/logrus",
+			"path": "github.com/Sirupsen/logrus",
+			"revision": "fca41de14aa9f18e4a4db604cf05e4fc5747d215",
+			"revisionTime": "2017-08-26T15:48:46Z"
+		},
+		{
+			"checksumSHA1": "63vHVSiItUfflK3tUwe6mrI84BQ=",
+			"origin": "github.com/lastbackend/enterprise/vendor/github.com/Sirupsen/logrus/hooks/syslog",
+			"path": "github.com/Sirupsen/logrus/hooks/syslog",
+			"revision": "fca41de14aa9f18e4a4db604cf05e4fc5747d215",
+			"revisionTime": "2017-08-26T15:48:46Z"
+		},
+		{
+			"checksumSHA1": "GXOurDGgsLmJs0wounpdWZZRSGw=",
+			"path": "github.com/dgrijalva/jwt-go",
+			"revision": "a539ee1a749a2b895533f979515ac7e6e0f5b650",
+			"revisionTime": "2017-06-08T00:51:49Z"
+		},
+		{
+			"checksumSHA1": "r6BN5PoTjaqtUTn5u/LTNwHfvRE=",
+			"path": "github.com/go-playground/form",
+			"revision": "a852958e6bc0e555a59b0dadaabd8d4398841c67",
+			"revisionTime": "2017-07-31T00:44:17Z"
+		},
+		{
+			"checksumSHA1": "1fxbyX05B94zp1PhDG+owQxt6ag=",
+			"path": "github.com/go-playground/pure",
+			"revision": "1eb11d9b1d07356311d782c51797ce0ae202b9ff",
+			"revisionTime": "2017-06-25T18:12:55Z"
+		},
+		{
+			"checksumSHA1": "g/V4qrXjUGG9B+e3hB+4NAYJ5Gs=",
+			"origin": "github.com/lastbackend/enterprise/vendor/github.com/gorilla/context",
+			"path": "github.com/gorilla/context",
+			"revision": "fca41de14aa9f18e4a4db604cf05e4fc5747d215",
+			"revisionTime": "2017-08-26T15:48:46Z"
+		},
+		{
+			"checksumSHA1": "hIbmXmNbwyP44fi1hh6zJrMcYws=",
+			"path": "github.com/gorilla/mux",
+			"revision": "ac112f7d75a0714af1bd86ab17749b31f7809640",
+			"revisionTime": "2017-07-03T15:07:09Z"
+		},
+		{
+			"checksumSHA1": "I7AAXZqD3Dy5KjQ9N+2/iHzlKzc=",
+			"path": "github.com/jawher/mow.cli",
+			"revision": "a459d5906bb7a9c5eda7c4d02eec7c541120226e",
+			"revisionTime": "2017-08-20T16:57:35Z"
+		},
+		{
+			"checksumSHA1": "umIcRnuzfcGlsc9jI/qTAb7c9Qc=",
+			"path": "github.com/lastbackend/enterprise/pkg/common/errors",
+			"revision": "fca41de14aa9f18e4a4db604cf05e4fc5747d215",
+			"revisionTime": "2017-08-26T15:48:46Z"
+		},
+		{
+			"checksumSHA1": "yxsOgPhMHY89NSBKcahCbdlBhdU=",
+			"path": "github.com/lastbackend/enterprise/pkg/common/types",
+			"revision": "fca41de14aa9f18e4a4db604cf05e4fc5747d215",
+			"revisionTime": "2017-08-26T15:48:46Z"
+		},
+		{
+			"checksumSHA1": "TNhAZoGNz4E7NFGv17Ntc67qMQM=",
+			"path": "github.com/lastbackend/enterprise/pkg/log",
+			"revision": "fca41de14aa9f18e4a4db604cf05e4fc5747d215",
+			"revisionTime": "2017-08-26T15:48:46Z"
+		},
+		{
+			"checksumSHA1": "wOA54+WtPKO3txHxwgbk7nmwqFs=",
+			"path": "github.com/lastbackend/enterprise/pkg/log/formatter",
+			"revision": "fca41de14aa9f18e4a4db604cf05e4fc5747d215",
+			"revisionTime": "2017-08-26T15:48:46Z"
+		},
+		{
+			"checksumSHA1": "JYAD3I3xY1dadIS3GwFfmOwMNUE=",
+			"path": "github.com/lastbackend/enterprise/pkg/log/hooks",
+			"revision": "fca41de14aa9f18e4a4db604cf05e4fc5747d215",
+			"revisionTime": "2017-08-26T15:48:46Z"
+		},
+		{
+			"checksumSHA1": "X17wrcwvHICBsuWQDecl4udY4+Y=",
+			"path": "github.com/lastbackend/enterprise/pkg/log/hooks/os",
+			"revision": "fca41de14aa9f18e4a4db604cf05e4fc5747d215",
+			"revisionTime": "2017-08-26T15:48:46Z"
+		},
+		{
+			"checksumSHA1": "ejEP/T1rvCK03Sg77YkQAnejFho=",
+			"path": "github.com/lastbackend/enterprise/pkg/log/logger",
+			"revision": "fca41de14aa9f18e4a4db604cf05e4fc5747d215",
+			"revisionTime": "2017-08-26T15:48:46Z"
+		},
+		{
+			"checksumSHA1": "Lt0+NiBvDP4oB8yUPbVvjhJuNyI=",
+			"path": "github.com/lastbackend/enterprise/pkg/util/http/utils",
+			"revision": "fca41de14aa9f18e4a4db604cf05e4fc5747d215",
+			"revisionTime": "2017-08-26T15:48:46Z"
+		},
+		{
+			"checksumSHA1": "zmC8/3V4ls53DJlNTKDZwPSC/dA=",
+			"origin": "github.com/lastbackend/enterprise/vendor/github.com/satori/go.uuid",
+			"path": "github.com/satori/go.uuid",
+			"revision": "fca41de14aa9f18e4a4db604cf05e4fc5747d215",
+			"revisionTime": "2017-08-26T15:48:46Z"
+		},
+		{
+			"checksumSHA1": "BYvROBsiyAXK4sq6yhDe8RgT4LM=",
+			"path": "github.com/sirupsen/logrus",
+			"revision": "89742aefa4b206dcf400792f3bd35b542998eb3b",
+			"revisionTime": "2017-08-22T13:27:46Z"
+		},
+		{
+			"checksumSHA1": "vE43s37+4CJ2CDU6TlOUOYE0K9c=",
+			"origin": "github.com/lastbackend/enterprise/vendor/golang.org/x/crypto/bcrypt",
+			"path": "golang.org/x/crypto/bcrypt",
+			"revision": "fca41de14aa9f18e4a4db604cf05e4fc5747d215",
+			"revisionTime": "2017-08-26T15:48:46Z"
+		},
+		{
+			"checksumSHA1": "JsJdKXhz87gWenMwBeejTOeNE7k=",
+			"origin": "github.com/lastbackend/enterprise/vendor/golang.org/x/crypto/blowfish",
+			"path": "golang.org/x/crypto/blowfish",
+			"revision": "fca41de14aa9f18e4a4db604cf05e4fc5747d215",
+			"revisionTime": "2017-08-26T15:48:46Z"
+		},
+		{
+			"checksumSHA1": "nqWNlnMmVpt628zzvyo6Yv2CX5Q=",
+			"path": "golang.org/x/crypto/ssh/terminal",
+			"revision": "81e90905daefcd6fd217b62423c0908922eadb30",
+			"revisionTime": "2017-08-25T20:24:07Z"
+		},
+		{
+			"checksumSHA1": "Y+HGqEkYM15ir+J93MEaHdyFy0c=",
+			"origin": "github.com/lastbackend/enterprise/vendor/golang.org/x/net/context",
+			"path": "golang.org/x/net/context",
+			"revision": "fca41de14aa9f18e4a4db604cf05e4fc5747d215",
+			"revisionTime": "2017-08-26T15:48:46Z"
+		},
+		{
+			"checksumSHA1": "SjCoL7KD7qBmgSuqGTCAuUhigDk=",
+			"origin": "github.com/lastbackend/enterprise/vendor/golang.org/x/oauth2",
+			"path": "golang.org/x/oauth2",
+			"revision": "fca41de14aa9f18e4a4db604cf05e4fc5747d215",
+			"revisionTime": "2017-08-26T15:48:46Z"
+		},
+		{
+			"checksumSHA1": "Umx4Fmn5FyXJyUVzKWhnQdvFNkc=",
+			"origin": "github.com/lastbackend/enterprise/vendor/golang.org/x/oauth2/internal",
+			"path": "golang.org/x/oauth2/internal",
+			"revision": "fca41de14aa9f18e4a4db604cf05e4fc5747d215",
+			"revisionTime": "2017-08-26T15:48:46Z"
+		},
+		{
+			"checksumSHA1": "7NuioK0dEzBI+OOdVzTARrHsXgI=",
+			"path": "golang.org/x/sys/unix",
+			"revision": "2d6f6f883a06fc0d5f4b14a81e4c28705ea64c15",
+			"revisionTime": "2017-08-25T18:47:02Z"
+		},
+		{
+			"checksumSHA1": "gVfCD++7aVcdKF2spv6XkEM/wYw=",
+			"path": "golang.org/x/sys/windows",
+			"revision": "2d6f6f883a06fc0d5f4b14a81e4c28705ea64c15",
+			"revisionTime": "2017-08-25T18:47:02Z"
+		}
+	],
+	"rootPath": "github.com/lastbackend/monarch"
+}

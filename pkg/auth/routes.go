@@ -16,9 +16,14 @@
 // from Last.Backend LLC.
 //
 
-package node
+package auth
 
-// The structure of the cfg to run the daemon
-type Config struct {
-	Port     *int
+import (
+	"github.com/lastbackend/monarch/pkg/utils/http"
+)
+
+var Routes = []http.Route{
+	// Auth handlers
+	{Path: "/auth", Method: http.MethodPost, Handler: SessionCreateH},
 }
+

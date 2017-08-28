@@ -16,9 +16,28 @@
 // from Last.Backend LLC.
 //
 
-package node
+package http
 
-// The structure of the cfg to run the daemon
-type Config struct {
-	Port     *int
+func (r *RawReq) POST(pathURL string) *RawReq {
+	r.method = MethodPost
+	r.rawURL = r.host + pathURL
+	return r
+}
+
+func (r *RawReq) GET(pathURL string) *RawReq {
+	r.method = MethodGet
+	r.rawURL = r.host + pathURL
+	return r
+}
+
+func (r *RawReq) PUT(pathURL string) *RawReq {
+	r.method = MethodPut
+	r.rawURL = r.host + pathURL
+	return r
+}
+
+func (r *RawReq) DELETE(pathURL string) *RawReq {
+	r.method = MethodDelete
+	r.rawURL = r.host + pathURL
+	return r
 }

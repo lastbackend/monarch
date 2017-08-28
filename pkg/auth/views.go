@@ -16,9 +16,25 @@
 // from Last.Backend LLC.
 //
 
-package node
+package auth
 
-// The structure of the cfg to run the daemon
-type Config struct {
-	Port     *int
+import (
+	"github.com/lastbackend/monarch/pkg/types"
+	"encoding/json"
+)
+
+type Session struct {
+	Token string `json:"token"`
+}
+
+func NewSession(obj *types.Session) *Session {
+	var token, err = obj.Encode()
+	if err != nil {
+		return nil
+	}
+	return &Session{token}
+}
+
+func (obj *Session) ToJson() ([]byte, error) {
+	return json.Marshal(obj)
 }

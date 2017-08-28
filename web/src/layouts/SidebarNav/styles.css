@@ -1,0 +1,155 @@
+.sidebar-nav .navbar {
+  overflow: hidden;
+  background-color: #2e353d;
+  font-size: 12px;
+}
+
+.sidebar-nav .navbar img {
+  margin-top: 0;
+}
+
+.sidebar-nav .navbar-brand {
+  line-height: 40px;
+  font-size: 18px;
+  color: #ffffff;
+  display: block;
+  overflow: hidden;
+}
+
+.sidebar-nav .sidebar-navbar-collapse {
+  align-items: flex-start !important;
+}
+
+.sidebar-nav .navbar-logout .navbar-nav .nav-item {
+  padding: 0;
+}
+
+.sidebar-nav .navbar-brand:link,
+.sidebar-nav .navbar-brand:hover,
+.sidebar-nav .navbar-brand:visited,
+.sidebar-nav .navbar-brand:active {
+  color: #ffffff;
+}
+
+.sidebar-nav .navbar-light .navbar-nav .navbar-item,
+.sidebar-nav .navbar li {
+  float: none;
+  display: block;
+  padding-left: 5px;
+  background-color: #2e353d;
+}
+
+.sidebar-nav .navbar-light .navbar-nav .navbar-item,
+.sidebar-nav .navbar li.active,
+.sidebar-nav .navbar li:hover {
+  border-left: 3px solid #d19b3d;
+  background-color: #000000;;
+  -webkit-transition: all 0.25s ease;
+  -moz-transition: all 0.25s ease;
+  -o-transition: all 0.25s ease;
+  -ms-transition: all 0.25s ease;
+  transition: all 0.25s ease;
+}
+
+.sidebar-nav .navbar-light .navbar-nav .nav-link,
+.sidebar-nav .navbar li a {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.sidebar-nav .navbar-logout li a:visited,
+.sidebar-nav .navbar-logout li a:link,
+.sidebar-nav .navbar-logout li a:active,
+.sidebar-nav .navbar-logout li a:hover,
+.sidebar-nav .navbar li a:visited,
+.sidebar-nav .navbar li a:link,
+.sidebar-nav .navbar li a:active,
+.sidebar-nav .navbar li a:hover,
+.sidebar-nav .navbar-logout li:hover a:link,
+.sidebar-nav .navbar-logout li:hover a:active,
+.sidebar-nav .navbar-logout li:hover a:hover,
+.sidebar-nav .navbar li:hover a:visited,
+.sidebar-nav .navbar li:hover a:link,
+.sidebar-nav .navbar li:hover a:active,
+.sidebar-nav .navbar li:hover a:hover {
+  color: #ffffff;
+}
+
+.sidebar-nav .navbar-logout li.active a:visited,
+.sidebar-nav .navbar-logout li.active a:link,
+.sidebar-nav .navbar-logout li.active a:active,
+.sidebar-nav .navbar-logout li.active a:hover,
+.sidebar-nav .navbar li.active a:visited,
+.sidebar-nav .navbar li.active a:link,
+.sidebar-nav .navbar li.active a:active,
+.sidebar-nav .navbar li.active a:hover {
+  color: #ffffff;
+}
+
+.sidebar-nav .navbar li a i,
+.navbar-logout .navbar-nav li a i {
+  width: 20px;
+  padding-right: 25px
+}
+
+@media (min-width: 992px) {
+
+  .sidebar-nav .navbar {
+    position: fixed;
+    width: 200px;
+    height: 100%;
+    padding: 0;
+    top: 0;
+  }
+
+  .sidebar-nav .navbar img {
+    height: 50px;
+    margin-top: 25px;
+  }
+
+  .sidebar-nav .navbar-brand {
+    overflow: hidden;
+    background-color: #2e353d;
+    text-align: center;
+    position: fixed;
+    font-size: 14px;
+    width: inherit;
+    height: 100px;
+    top: 0;
+  }
+
+  .sidebar-nav .navbar-logout {
+    margin-bottom: 50px;
+    text-align: center;
+    width: inherit;
+    position: fixed;
+    font-size: 18px;
+    height: 50px;
+    bottom: 0;
+    left: 0;
+  }
+
+  .sidebar-nav .navbar .navbar-collapse {
+    padding: 100px 0 0 0;
+    height: 100%;
+  }
+
+  .sidebar-nav .navbar ul {
+    border-left: 3px solid #2e353d;
+    display: block;
+    float: none;
+    width: 100%;
+  }
+
+  .sidebar-nav .navbar-light .navbar-nav .navbar-item,
+  .sidebar-nav .navbar li {
+    padding-left: 20px;
+  }
+}
+
+.disabled {
+  pointer-events: none;
+  cursor: not-allowed;
+}

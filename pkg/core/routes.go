@@ -16,22 +16,13 @@
 // from Last.Backend LLC.
 //
 
-package node
+package core
 
 import (
-	"context"
+	"github.com/lastbackend/monarch/pkg/utils/http"
 )
 
-var ctx Context
-
-type Context struct {
-
+var Routes = []http.Route{
+	// Core handlers
 }
 
-func GetContext() *Context {
-	return &ctx
-}
-
-func (c *Context) Background() context.Context {
-	return context.Background()
-}

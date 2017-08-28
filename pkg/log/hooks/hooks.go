@@ -16,9 +16,41 @@
 // from Last.Backend LLC.
 //
 
-package node
+package hooks
 
-// The structure of the cfg to run the daemon
-type Config struct {
-	Port     *int
+import (
+	"github.com/sirupsen/logrus"
+	"path"
+	"runtime"
+	"strings"
+)
+
+type ContextHook struct {
+	Skip int
+}
+
+func (ContextHook) Levels() []logrus.Level {
+	return logrus.AllLevels
+}
+
+func (h ContextHook) Fire(entry *logrus.Entry) error {
+	if h.Skip == 0 {
+		h.Skip = 8
+	}
+
+	pc := make([]uintptr, 3, 3)
+	cnt := runtime.Callers(h.Skip, pc)
+
+	for i := 0; i < cnt; i++ {
+		fu := runtime.FuncForPC(pc[i] - 1)
+		name := fu.Name()
+		if !strings.Contains(name, "github.com/sirupsen/logrus") {
+			file, line := fu.FileLine(pc[i] - 1)
+			entry.Data["func"] = path.Base(name)
+			entry.Data["file"] = file
+			entry.Data["line"] = line
+			break
+		}
+	}
+	return nil
 }

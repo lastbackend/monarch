@@ -16,9 +16,4 @@
 // from Last.Backend LLC.
 //
 
-package node
-
-// The structure of the cfg to run the daemon
-type Config struct {
-	Port     *int
-}
+package core

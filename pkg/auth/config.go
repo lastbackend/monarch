@@ -16,9 +16,16 @@
 // from Last.Backend LLC.
 //
 
-package node
+package auth
 
 // The structure of the cfg to run the daemon
 type Config struct {
-	Port     *int
+	LogLevel  *int
+	Token     *string
+	APIServer APIServer
+}
+
+type APIServer struct {
+	Host *string
+	Port *int
 }

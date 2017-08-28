@@ -16,9 +16,18 @@
 // from Last.Backend LLC.
 //
 
-package node
+package utils
 
-// The structure of the cfg to run the daemon
-type Config struct {
-	Port     *int
+import (
+	"context"
+	"github.com/gorilla/mux"
+	"net/http"
+)
+
+func Vars(r *http.Request) map[string]string {
+	return mux.Vars(r)
+}
+
+func SetContext(r *http.Request, name string, val interface{}) *http.Request {
+	return r.WithContext(context.WithValue(r.Context(), name, val))
 }

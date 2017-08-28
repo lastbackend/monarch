@@ -16,9 +16,14 @@
 // from Last.Backend LLC.
 //
 
-package node
+package middleware
 
-// The structure of the cfg to run the daemon
-type Config struct {
-	Port     *int
+import (
+	"net/http"
+)
+
+func Context(h http.HandlerFunc) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		h.ServeHTTP(w, r)
+	}
 }
