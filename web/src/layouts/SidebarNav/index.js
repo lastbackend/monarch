@@ -71,26 +71,6 @@ class SidebarNav extends React.Component {
                   <i className="fa fa-bar-chart fa-lg"/>Dashboard
                 </Link>
               </li>
-              <li className={`nav-item ${this.isActive("module")}`}>
-                <Link to={"/module"} className="nav-link" activeClassName={"active"}>
-                  <i className="fa fa-cubes fa-lg"/>Modules
-                </Link>
-              </li>
-              <li className={`nav-item ${this.isActive("partner")}`}>
-                <Link to={"/partner"} className="nav-link" activeClassName={"active"}>
-                  <i className="fa fa-users fa-lg"/>Partners
-                </Link>
-              </li>
-              <li className={`nav-item ${this.isActive("game")}`}>
-                <Link to={"/game"} className="nav-link" activeClassName={"active"}>
-                  <i className="fa fa-gamepad fa-lg"/>Games
-                </Link>
-              </li>
-              <li className={`nav-item ${this.isActive("account")}`}>
-                <Link to={"/account"} className="nav-link" activeClassName={"active"}>
-                  <i className="fa fa-user fa-lg"/>Account
-                </Link>
-              </li>
               <li className="nav-item d-lg-none" onClick={this.handleLogout}>
                 <Link to={"/"} className="nav-link"><i className="fa fa-sign-out fa-lg"/>Sign
                   Out</Link>

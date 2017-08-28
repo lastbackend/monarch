@@ -31,7 +31,7 @@ func main() {
 		cfg auth.Config
 	)
 
-	app := cli.App("", "Infrastructure management toolkit")
+	app := cli.App("", "Auth api server")
 
 	app.Version("v version", "0.1.0")
 

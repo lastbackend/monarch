@@ -16,49 +16,39 @@
 // from Last.Backend LLC.
 //
 
-package auth
+package core
 
 import (
+	"github.com/gorilla/mux"
 	"github.com/lastbackend/monarch/pkg/log"
-	"os"
-	"os/signal"
-	"syscall"
+	"github.com/lastbackend/monarch/pkg/utils/http"
+
 )
 
-const logLevel = 2
-const app = "auth"
+// Extends routes variable
+var routes = make([]http.Route, 0)
 
-func Daemon(_cfg *Config) {
+func AddRoutes(r ...[]http.Route) {
+	for i := range r {
+		routes = append(routes, r[i]...)
+	}
+}
 
-	var (
-		sigs = make(chan os.Signal)
-		done = make(chan bool, 1)
-	)
+func init() {
+	AddRoutes(Routes)
+}
 
-	log.New(app, *_cfg.LogLevel)
-	log.Info("Start Auth server")
+func Listen(host string, port int) error {
 
-	go func() {
-		//types.SecretAccessToken = *_cfg.Token
-		if err := Listen(*_cfg.APIServer.Host, *_cfg.APIServer.Port); err != nil {
-			log.Fatalf("Http server start error: %v", err)
-		}
-	}()
+	log.V(logLevel).Debugf("HTTP: listen HTTP server on %s:%d", host, port)
 
-	// Handle SIGINT and SIGTERM.
-	signal.Notify(sigs, syscall.SIGINT, syscall.SIGTERM)
+	r := mux.NewRouter()
+	r.Methods("OPTIONS").HandlerFunc(http.Headers)
 
-	go func() {
-		for {
-			select {
-			case <-sigs:
-				done <- true
-				return
-			}
-		}
-	}()
+	for _, route := range routes {
+		log.V(logLevel).Debugf("HTTP: init route: %s", route.Path)
+		r.Handle(route.Path, http.Handle(route.Handler, route.Middleware...)).Methods(route.Method)
+	}
 
-	<-done
-
-	log.Info("Handle SIGINT and SIGTERM.")
+	return http.Listen(host, port, r)
 }

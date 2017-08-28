@@ -1,8 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
 
-import {SideNav, StatsSessionList, StatsFormSessionCreate} from "../containers";
-
 
 class DashboardPageList extends React.Component {
   constructor(props) {
@@ -25,18 +23,6 @@ class DashboardPageList extends React.Component {
           </div>
 
           <div className="col-12">
-            <div className="clearfix">
-              <div className="pull-left">
-                <h1 className="mt-4 pb-2">Session stats info</h1>
-              </div>
-              <div className="pull-right">
-                <SideNav title="Create game session" children={<StatsFormSessionCreate/>}/>
-              </div>
-            </div>
-          </div>
-
-          <div className="col-12">
-            <StatsSessionList/>
           </div>
         </div>
       </div>

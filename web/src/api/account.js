@@ -1,6 +1,6 @@
 import {requestJSON} from "../utils";
 
-const api_host = process.env.REACT_APP_API_HOST;
+const api_host = process.env.REACT_APP_AUTH_API_HOST;
 
 class Account {
 
