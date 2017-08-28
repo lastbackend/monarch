@@ -29,6 +29,17 @@ _testmain.go
 *.iml
 *.srl
 
+# Output of the go coverage tool, specifically when used with LiteIDE
+*.out
+
+# Project-local glide cache, RE: https://github.com/Masterminds/glide/issues/736
+.glide/
+
+# Idea files
+.idea/
+
+vendor/*/
+
 vendor/*/
 docs/output/
 coverage.txt
