@@ -22,7 +22,6 @@ import (
 	"net/http"
 	"github.com/go-playground/pure"
 	log "github.com/sirupsen/logrus"
-	//"fmt"
 	"fmt"
 )
 
@@ -39,9 +38,13 @@ func Daemon(cfg *Config) {
 }
 
 func build(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte("Hello World"))
+	var build BuildRequest
+
+	pure.Decode(r, false, 2147483647, &build)
 }
 
 func deploy(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte("Hello World"))
+	var deploy DeployRequest
+
+	pure.Decode(r, false, 2147483647, &deploy)
 }
