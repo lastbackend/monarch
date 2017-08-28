@@ -22,9 +22,3 @@ package node
 type Config struct {
 	Port     *int
 }
-
-var cfg = new(Config)
-
-func GetConfig() *Config {
-	return cfg
-}
