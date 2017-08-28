@@ -18,10 +18,13 @@
 
 package node
 
-import (
+// The structure of the cfg to run the daemon
+type Config struct {
+	LogLevel        *int
+}
 
-)
+var cfg = new(Config)
 
-func Daemon (cfg *Config) {
-
+func GetConfig() *Config {
+	return cfg
 }
