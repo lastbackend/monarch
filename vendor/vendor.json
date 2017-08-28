@@ -1,0 +1,19 @@
+{
+	"comment": "",
+	"ignore": "test",
+	"package": [
+		{
+			"checksumSHA1": "r6BN5PoTjaqtUTn5u/LTNwHfvRE=",
+			"path": "github.com/go-playground/form",
+			"revision": "a852958e6bc0e555a59b0dadaabd8d4398841c67",
+			"revisionTime": "2017-07-31T00:44:17Z"
+		},
+		{
+			"checksumSHA1": "1fxbyX05B94zp1PhDG+owQxt6ag=",
+			"path": "github.com/go-playground/pure",
+			"revision": "1eb11d9b1d07356311d782c51797ce0ae202b9ff",
+			"revisionTime": "2017-06-25T18:12:55Z"
+		}
+	],
+	"rootPath": "github.com/lastbackend/monarch"
+}
