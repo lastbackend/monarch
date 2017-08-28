@@ -24,6 +24,9 @@ import (
 	"github.com/lastbackend/monarch/pkg/node"
 	log "github.com/sirupsen/logrus"
 	"os"
+	"context"
+	"syscall"
+	"os/signal"
 )
 
 func main() {
@@ -69,8 +72,21 @@ func main() {
 	}
 	log.SetLevel(lvl)
 
+
+	ctx, cancel := context.WithCancel(context.Background())
+	defer cancel()
+
+
+	sigs := make(chan os.Signal)
+	signal.Notify(sigs, syscall.SIGINT, syscall.SIGTERM)
+
+	go func() {
+		<-sigs
+		cancel()
+	}()
+
 	app.Action = func() {
-		node.Daemon(&cfg)
+		node.Daemon(ctx, &cfg)
 	}
 
 	err = app.Run(os.Args)
