@@ -1,0 +1,9 @@
+
+.ant-calendar-picker.tm-datapicker .ant-input {
+  width: 290px !important;
+  font-size: 12px;
+}
+
+.ant-calendar-picker.tm-datapicker-sm .ant-input {
+  height: 31px;
+}
