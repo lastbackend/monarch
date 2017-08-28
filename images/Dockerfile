@@ -43,4 +43,4 @@ RUN rm -rf /go/pkg \
     && rm -rf /var/cache/apk/*
 
 EXPOSE 2967
-ENTRYPOINT ["/usr/local/bin/node"]
+ENTRYPOINT ["/usr/local/bin/monarch"]

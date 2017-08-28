@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 ## declare an array of components variable
-declare -a arr=("core" "node")
+declare -a arr=("core" "node" "auth")
 
 ## now loop through the components array
 for i in "${arr[@]}"

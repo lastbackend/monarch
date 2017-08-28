@@ -25,6 +25,19 @@ build:
 	@echo "== Building Last.Backend platform"
 	@sh ./hack/build-cross.sh
 
+install:
+	@echo "== Instal binaries"
+	mv ./build/linux/* /usr/local/bin/
+
+
 image:
 	@echo "== Pre-building configuration"
 	@sh ./hack/build-images.sh
+
+run-core:
+	@echo "== Run core"
+	@go run ./cmd/core/core.go --debug=7
+
+run-node:
+	@echo "== Run node"
+	@go run ./cmd/node/node.go --debug=7
