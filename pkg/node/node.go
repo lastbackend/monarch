@@ -23,9 +23,12 @@ import (
 	"github.com/go-playground/pure"
 	log "github.com/sirupsen/logrus"
 	"fmt"
+	"context"
 )
 
-func Daemon(cfg *Config) {
+var b builder
+
+func Daemon(ctx context.Context, cfg *Config) {
 	p := pure.New()
 	p.Post("/build", build)
 	p.Post("/deploy", deploy)
@@ -34,17 +37,36 @@ func Daemon(cfg *Config) {
 		"port": *cfg.Port,
 	}).Info("listening")
 
-	http.ListenAndServe(fmt.Sprintf(":%d", *cfg.Port), p.Serve())
+	b = newBuilder(ctx)
+	go http.ListenAndServe(fmt.Sprintf(":%d", *cfg.Port), p.Serve())
+	<-ctx.Done()
+	b.stopAwait()
+}
+
+type acceptedBuild struct {
+	Build string `json:"build"`
+}
+
+type acceptedDeploy struct {
+	Deployment string `json:"deployment"`
 }
 
 func build(w http.ResponseWriter, r *http.Request) {
 	var build BuildRequest
 
 	pure.Decode(r, false, 2147483647, &build)
+
+	b.submit(&buildwork{
+		what: build,
+		ctx:  r.Context(),
+	})
+
+	pure.JSON(w, http.StatusAccepted, acceptedBuild{Build: "uuid"})
 }
 
 func deploy(w http.ResponseWriter, r *http.Request) {
 	var deploy DeployRequest
 
 	pure.Decode(r, false, 2147483647, &deploy)
+	pure.JSON(w, http.StatusAccepted, acceptedDeploy{Deployment: "uuid"})
 }
